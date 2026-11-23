@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1177 Medical Record - Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        '1177-red': '#b71234',
+                        '1177-blue': '#2b506e',
+                        '1177-bg': '#f5f5f5',
+                        '1177-pink': '#fbeff1',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+        body { background-color: #ffffff; }
+        
+        .header-curve {
+            background-color: #b71234;
+            border-bottom-right-radius: 40px;
+            padding: 1.5rem 3rem;
+            display: inline-block;
+        }
+
+        @keyframes flashLow {
+            0%, 100% { background-color: transparent; box-shadow: none; }
+            25%, 75% { background-color: #bbf7d0; box-shadow: 0 0 0 2px #22c55e; }
+        }
+
+        @keyframes flashMedium {
+            0%, 100% { background-color: transparent; box-shadow: none; }
+            25%, 75% { background-color: #fef08a; box-shadow: 0 0 0 2px #eab308; }
+        }
+
+        @keyframes flashHigh {
+            0%, 100% { background-color: transparent; box-shadow: none; }
+            25%, 75% { background-color: #fecaca; box-shadow: 0 0 0 2px #ef4444; }
+        }
+        @keyframes flashGray {
+            0%, 100% { background-color: transparent; box-shadow: none; }
+            25%, 75% { background-color: #e5e7eb; box-shadow: 0 0 0 2px #9ca3af; }
+        }
+
+        .flash-LOW {
+            animation: flashLow 1.5s ease-in-out;
+        }
+
+        .flash-MEDIUM {
+            animation: flashMedium 1.5s ease-in-out;
+        }
+
+        .flash-HIGH {
+            animation: flashHigh 1.5s ease-in-out;
+        }
+
+        .flash-GRAY {
+            animation: flashGray 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 1177 Header -->
+    <header class="bg-1177-pink flex justify-between items-start border-b border-gray-200">
+        <div class="header-curve text-white">
+            <div class="text-5xl font-bold tracking-tighter">1177</div>
+        </div>
+        <div class="p-4 flex items-center gap-4 text-1177-red text-sm">
+            <div class="flex items-center gap-2">
+                <svg class="w-8 h-8 text-1177-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <div>
+                    <div class="font-bold text-gray-800">Test Patient 3</div>
+                    <a href="#" class="hover:underline text-gray-800">Settings</a> <span class="text-gray-400">|</span> <a href="#" class="hover:underline text-gray-800">Log out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b border-gray-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <ul class="flex space-x-6 text-1177-red text-lg py-3 overflow-x-auto">
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">Inbox</a></li>
+                <li><a href="#" class="hover:underline">Booked appointments</a></li>
+                <li class="border-b-4 border-1177-red pb-2 font-bold"><a href="#">Medical Record</a></li>
+                <li><a href="#" class="hover:underline">Self-sampling</a></li>
+                <li><a href="#" class="hover:underline">Support and treatment</a></li>
+                <li><a href="#" class="hover:underline">Other services</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-1177-bg border-b border-gray-200 text-sm py-2">
+        <div class="max-w-6xl mx-auto px-4 text-gray-600">
+            You are here: <a href="#" class="underline text-gray-700">Home</a> / <a href="#" class="underline text-gray-700">Medical Record</a> / Notes
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-[110rem] mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8">
+        
+        <!-- Left Column (Main) -->
+        <div class="flex-1 min-w-0">
+            <h1 class="text-5xl font-bold text-1177-red mb-6 tracking-tight">Notes</h1>
+            
+            <p class="text-xl text-gray-800 mb-10 max-w-2xl">
+                Here you can view notes written by healthcare professionals when you have been in contact with care or received treatment.
+            </p>
+
+            <!-- Filter bar -->
+            <div class="flex justify-between items-center border-t border-b border-gray-400 py-4 mb-6">
+                <span class="text-gray-800 text-lg">40 notes found</span>
+                <button class="flex items-center gap-2 text-1177-blue font-semibold text-lg hover:underline">
+                    Filter notes
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </div>
+
+            <!-- List of Expandable Notes -->
+            <div class="space-y-4">
+                
+                <!-- NOTE 1 (Contains Demo) -->
+                <div class="bg-white border-t-[6px] border-1177-blue shadow-[0_2px_8px_rgba(0,0,0,0.1)] rounded-b-md">
+                    <button onclick="toggleNote('note1', 'icon1')" class="w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition-colors">
+                        <div>
+                            <h2 class="text-xl font-bold text-1177-blue mb-1">Inpatient Care, Physician</h2>
+                            <p class="text-gray-600">2026-11-21 • Emergency Department, Region Stockholm</p>
+                        </div>
+                        <svg id="icon1" class="w-6 h-6 text-1177-blue transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    
+                    <div id="note1" class="hidden border-t border-gray-200 p-5 bg-gray-50">
+                        <div class="mb-4 text-sm text-gray-600">
+                            <strong>Signed by:</strong> Dr. Anna Lind, Licensed Physician
+                        </div>
+                        
+                        <!-- Three paragraphs, each with its own subheading, simplify button and three boxes (built in JS) -->
+                        <div id="sections"></div>
+
+                    </div>
+                </div>
+
+                <!-- NOTE 2 -->
+                <div class="bg-white border-t-[6px] border-1177-blue shadow-[0_2px_8px_rgba(0,0,0,0.1)] rounded-b-md">
+                    <button onclick="toggleNote('note2', 'icon2')" class="w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition-colors">
+                        <div>
+                            <h2 class="text-xl font-bold text-1177-blue mb-1">Outpatient Visit, Nurse</h2>
+                            <p class="text-gray-600">2026-10-14 • City Primary Care Center, Region Stockholm</p>
+                        </div>
+                        <svg id="icon2" class="w-6 h-6 text-1177-blue transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="note2" class="hidden border-t border-gray-200 p-5 bg-gray-50">
+                        <div class="mb-4 text-sm text-gray-600"><strong>Signed by:</strong> Maria Svensson, Registered Nurse</div>
+                        <p class="text-gray-800">Patient arrived for wound dressing change. The wound looks clean with no erythema or edema. New sterile dressing applied.</p>
+                    </div>
+                </div>
+
+                <!-- NOTE 3 -->
+                <div class="bg-white border-t-[6px] border-1177-blue shadow-[0_2px_8px_rgba(0,0,0,0.1)] rounded-b-md">
+                    <button onclick="toggleNote('note3', 'icon3')" class="w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition-colors">
+                        <div>
+                            <h2 class="text-xl font-bold text-1177-blue mb-1">Telephone Consultation, Physician</h2>
+                            <p class="text-gray-600">2026-09-02 • Orthopedic Clinic, Region Stockholm</p>
+                        </div>
+                        <svg id="icon3" class="w-6 h-6 text-1177-blue transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="note3" class="hidden border-t border-gray-200 p-5 bg-gray-50">
+                        <div class="mb-4 text-sm text-gray-600"><strong>Signed by:</strong> Dr. Erik Johansson, Licensed Physician</div>
+                        <p class="text-gray-800">Phone call regarding lab and imaging results. MRI shows no active inflammation. Recommended continued physical therapy as planned.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Column (Sidebar) -->
+        <div class="w-full lg:w-[280px] flex-shrink-0">
+            
+            <!-- Search -->
+            <div class="border-b border-gray-300 pb-6 mb-6">
+                <div class="flex items-center gap-3 text-1177-blue">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <a href="#" class="text-lg hover:underline">Search your medical record</a>
+                </div>
+            </div>
+
+            <!-- What do you want to read -->
+            <div class="border-b border-gray-300 pb-6 mb-6">
+                <div class="flex items-center gap-2 mb-4 text-gray-600 uppercase text-sm font-bold tracking-wide">
+                    WHAT DO YOU WANT TO READ?
+                    <svg class="w-5 h-5 text-1177-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div class="space-y-4 text-gray-900">
+                    <p>You have chosen to display all records.</p>
+                    <p>You can change your selection on the <a href="#" class="text-1177-blue underline hover:no-underline">Medical Record start page</a></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-1177-pink mt-12">
+        <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row justify-between gap-8">
+            <div class="md:w-1/2">
+                <h2 class="text-xl font-bold text-1177-red mb-2">1177 - safe advice about your health and care</h2>
+                <p class="text-gray-700 text-sm">1177 is a service provided by Sweden's regions. We are always here for you when you want to feel better.</p>
+            </div>
+            <div class="md:w-1/2 flex flex-col sm:flex-row gap-8 sm:gap-24 text-1177-red text-sm">
+                <div class="space-y-4">
+                    <a href="#" class="flex items-center gap-1 hover:underline"><span class="text-lg">&rsaquo;</span> Support <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                    <a href="#" class="flex items-center gap-1 hover:underline"><span class="text-lg">&rsaquo;</span> Accessibility <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                </div>
+                <div>
+                    <a href="#" class="flex items-center gap-1 hover:underline"><span class="text-lg">&rsaquo;</span> Read more about e-services <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="bg-1177-red text-white text-center text-xs py-2">
+- Medical Record • 4.3.2.5 •
+        </div>
+    </footer>
+
+    <!-- Chat assistant: fixed to the screen, always visible while scrolling -->
+    <div id="chatPanel" class="hidden fixed bottom-4 right-4 z-50 w-[26rem] max-w-[calc(100vw-2rem)]">
+        <!-- Info popup: opens above the assistant when the exclamation-mark icon is clicked -->
+        <div id="chatInfo" role="dialog" aria-label="Information about the assistant" class="hidden absolute bottom-full right-0 mb-2 w-72 max-w-full bg-white border border-gray-300 rounded-lg shadow-xl p-3 text-xs text-gray-700">The assistant explains what the sentence you click means, in simple language. Only that sentence and your question are sent. Nothing is shared with anyone else. Do not type names or personal numbers. It does not give medical advice. Ask your doctor or contact 1177 about your own health.</div>
+
+        <div class="bg-white border border-gray-300 rounded-lg shadow-2xl flex flex-col overflow-hidden">
+        <div class="flex items-center bg-1177-blue text-white">
+            <button type="button" onclick="toggleChat()" class="flex-1 px-4 py-3 text-left font-bold">Ask the assistant for help</button>
+            <button id="chatInfoBtn" type="button" onclick="toggleChatInfo()" aria-label="Information about the assistant" aria-expanded="false" aria-controls="chatInfo" class="px-2 py-3 hover:text-gray-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7.5v5.5m0 3.2h.01"></path></svg>
+            </button>
+            <button type="button" onclick="toggleChat()" aria-label="Collapse or expand the assistant" class="pl-1 pr-4 py-3 hover:text-gray-200">
+                <svg id="chatChevron" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+        </div>
+
+        <div id="chatBody" class="p-4">
+            <p id="chatFocus" class="text-xs italic text-gray-500 mb-3">Click a sentence in one of the texts.</p>
+
+            <div id="chatMessages" class="space-y-3 max-h-[40vh] overflow-y-auto mb-3"></div>
+
+            <div id="chatSuggestions" class="flex flex-wrap gap-2 mb-3">
+                <button type="button" onclick="askSuggestion('What does this sentence mean?')" class="text-xs border border-1177-blue text-1177-blue hover:bg-blue-50 rounded-full px-3 py-1">What does it mean?</button>
+            </div>
+
+            <form onsubmit="sendChat(event)" class="flex gap-2">
+                <input id="chatInput" type="text" maxlength="2000" autocomplete="off" placeholder="Ask about the marked sentence..." class="flex-1 min-w-0 p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-[#2B506E]">
+                <button id="chatSend" type="submit" class="bg-1177-blue hover:bg-[#1a3449] disabled:opacity-50 text-white font-bold py-2 px-4 rounded-full text-sm transition-colors">Send</button>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let sentenceMap = {};
+
+        const BASE_SPAN_CLASS = "cursor-pointer transition-colors duration-150 rounded px-1 py-0.5";
+
+        const RISK_STYLES = {
+            LOW: {
+                hover: ["bg-green-200", "ring-2", "ring-green-500"],
+                flash: "flash-LOW",
+                title: "Facts verified, simplified",
+                titleColor: "text-green-800",
+                boxBg: "bg-green-50 border-green-200"
+            },
+            MEDIUM: {
+                hover: ["bg-yellow-200", "ring-2", "ring-yellow-500"],
+                flash: "flash-MEDIUM",
+                title: "Facts verified, less simplified",
+                titleColor: "text-yellow-800",
+                boxBg: "bg-yellow-50 border-yellow-200"
+            },
+            HIGH: {
+                hover: ["bg-red-200", "ring-2", "ring-red-500"],
+                flash: "flash-HIGH",
+                title: "Facts changed - patient sees the original",
+                titleColor: "text-red-800",
+                boxBg: "bg-red-50 border-red-200"
+            }
+        };
+
+        function toggleNote(noteId, iconId) {
+            const note = document.getElementById(noteId);
+            const icon = document.getElementById(iconId);
+            
+            if (note.classList.contains('hidden')) {
+                note.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                note.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatSimpleReason(reason) {
+            const lower = reason.toLowerCase();
+            if (lower.includes('negation')) {
+                return "A negative word (such as 'no' or 'not') may have been left out, which could reverse the meaning of what the doctor wrote.";
+            }
+            if (lower.includes('contradiction') || lower.includes('hallucination')) {
+                return "The simplified text may state something that contradicts the original medical note.";
+            }
+            if (lower.includes('dos') || lower.includes('number') || lower.includes('dosage')) {
+                return "A number, measurement, or medication dose from the original note may be missing or changed.";
+            }
+            if (lower.includes('omitted') || lower.includes('short')) {
+                return "Some medical details from the original sentence were left out when shortening the text.";
+            }
+            if (lower.includes('neutral')) {
+                return "The simplified version may include added details or slightly shift the meaning of the original note.";
+            }
+            return reason.replace(/\s*\([^)]*NLI[^)]*\)/gi, '').trim();
+        }
+
+        function resetInspector(k) {
+            const inspector = document.getElementById(`sentenceInspector-${k}`);
+            if (inspector) {
+                inspector.className = "p-4 rounded border border-gray-200 bg-gray-50 text-sm text-gray-600 transition-all";
+                inspector.innerHTML = `<span class="italic">Hover over any sentence to view risk details, or click to jump to the matching sentence in the other text.</span>`;
+            }
+        }
+
+        // Original box and patient box share one scheme: unchanged (original shown) = gray, changed (simplified) = yellow.
+        const PATIENT_HOVER_UNCHANGED = ["bg-gray-200", "ring-2", "ring-gray-400"];
+        const PATIENT_HOVER_CHANGED = ["bg-yellow-200", "ring-2", "ring-yellow-500"];
+
+        function patientHover(item) {
+            return item.risk === 'HIGH' ? PATIENT_HOVER_UNCHANGED : PATIENT_HOVER_CHANGED;
+        }
+
+        // A sentence is addressed by key "<section>-<id>", e.g. "1-3" = sentence 3 in the second paragraph.
+        const sectionOf = key => key.split('-')[0];
+
+        function renderInspector(key) {
+            const k = sectionOf(key);
+            const inspector = document.getElementById(`sentenceInspector-${k}`);
+            const item = sentenceMap[key];
+            if (!inspector || !item) return;
+            const style = RISK_STYLES[item.risk] || RISK_STYLES.LOW;
+            const uniqueReasons = (item.reasons && item.reasons.length > 0 && item.risk !== 'LOW')
+                ? [...new Set(item.reasons.map(r => formatSimpleReason(r)).filter(Boolean))]
+                : [];
+
+            const reasonsList = uniqueReasons.length > 0
+                ? `<ul class="mt-1 space-y-1 text-gray-700">${uniqueReasons.map(r => `<li>${escapeHtml(r)}</li>`).join('')}</ul>`
+                : `<p class="mt-1 text-gray-700">The meaning of this sentence matches what the doctor originally wrote.</p>`;
+
+            inspector.className = `p-4 rounded border transition-all text-sm ${style.boxBg}`;
+            inspector.innerHTML = `
+                <div class="font-bold ${style.titleColor} mb-1">${style.title}</div>
+                ${reasonsList}
+            `;
+        }
+
+        // Add or remove the highlight of one sentence in all three boxes.
+        function setHighlight(key, on) {
+            const item = sentenceMap[key];
+            const origEl = document.getElementById(`orig-${key}`);
+            const simpEl = document.getElementById(`simp-${key}`);
+            const patEl = document.getElementById(`pat-${key}`);
+            if (!item || !origEl || !simpEl) return;
+            const style = RISK_STYLES[item.risk] || RISK_STYLES.LOW;
+            const op = on ? 'add' : 'remove';
+            origEl.classList[op](...patientHover(item));
+            simpEl.classList[op](...style.hover);
+            if (patEl) patEl.classList[op](...patientHover(item));
+        }
+
+        function highlightPair(key, isActive) {
+            if (!sentenceMap[key]) return;
+            setHighlight(key, isActive);
+            if (isActive) renderInspector(key);
+            else resetInspector(sectionOf(key));
+        }
+
+        function jumpToPair(key, targetPrefix) {
+            const item = sentenceMap[key];
+            const targetEl = document.getElementById(`${targetPrefix}-${key}`);
+            if (!item || !targetEl) return;
+
+            setChatFocus(key);
+            const style = RISK_STYLES[item.risk] || RISK_STYLES.LOW;
+
+            // The clicked sentence stays highlighted (in all three boxes) while the mouse is over it;
+            // the highlight is removed again by the normal mouse-leave.
+            setHighlight(key, true);
+            renderInspector(key);
+
+            // Clear any ongoing flash on all sentences
+            document.querySelectorAll('.flash-LOW, .flash-MEDIUM, .flash-HIGH, .flash-GRAY').forEach(el => {
+                el.classList.remove('flash-LOW', 'flash-MEDIUM', 'flash-HIGH', 'flash-GRAY');
+            });
+
+            // Scroll smoothly to the matching sentence and flash it briefly
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            void targetEl.offsetWidth;
+            const flash = (targetPrefix === 'orig' || targetPrefix === 'pat') ? (item.risk === 'HIGH' ? 'flash-GRAY' : 'flash-MEDIUM') : style.flash;
+            targetEl.classList.add(flash);
+
+            targetEl.addEventListener('animationend', () => {
+                targetEl.classList.remove(flash);
+            }, { once: true });
+        }
+
+        // The FastAPI backend (api.py) serves this page on port 8000.
+        const API_URL = 'http://localhost:8000';
+        const SECTION_COUNT = 3;
+        const placeholder = text => `<div class="bg-white p-6 border border-dashed border-gray-300 rounded text-gray-400 italic">${text}</div>`;
+        const PATIENT_PLACEHOLDER = placeholder('The safe version shown to the patient will appear here.');
+        const REVIEW_PLACEHOLDER = placeholder("The model's own suggestion, color-coded green, yellow and red (not visible to the user), will appear here.");
+
+        // One paragraph = a subheading + three boxes (original | safe version for the patient | model suggestion).
+        function sectionHtml(k) {
+            return `
+            <section class="mb-10">
+                <h3 id="sectionTitle-${k}" class="text-xl font-bold text-1177-red mb-3">Loading...</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 items-start">
+
+                    <!-- Original Clinical Note Box -->
+                    <div class="bg-white p-6 border border-gray-200 rounded shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+                            <h4 class="font-bold text-1177-red text-lg">Clinical Note:</h4>
+                            <button onclick="translateJournal(${k})" class="bg-1177-blue hover:bg-[#1a3449] text-white font-bold py-2 px-5 rounded-full transition-colors flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                Simplify text
+                            </button>
+                        </div>
+                        <p id="exampleSource-${k}" class="text-xs text-gray-500 mb-3">Test data: PLABA test split (public PubMed abstracts, no patient data)</p>
+                        <div id="originalText-${k}" class="p-4 bg-gray-50 border border-gray-200 rounded text-gray-900 leading-relaxed text-base mb-5">Loading test example...</div>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="loadExample(${k})" class="border-2 border-1177-blue text-1177-blue hover:bg-blue-50 font-bold py-3 px-6 rounded-full transition-colors">
+                                Load another test example
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Safe version (what the patient sees) -->
+                    <div>
+                        <div id="loading-${k}" class="hidden text-center text-gray-500 py-6">
+                            <svg class="animate-spin h-6 w-6 text-1177-blue mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                            <p class="text-sm">Translating into plain language...</p>
+                        </div>
+                        <div id="patientContainer-${k}"></div>
+                    </div>
+
+                    <!-- Model suggestion (not visible to the patient) -->
+                    <div id="resultContainer-${k}"></div>
+                </div>
+            </section>`;
+        }
+
+        function usedPmids(exceptK) {
+            return new Set([...document.querySelectorAll('[data-pmid]')]
+                .filter(el => el.id !== `exampleSource-${exceptK}`).map(el => el.dataset.pmid));
+        }
+
+        async function loadExample(k) {
+            const originalBox = document.getElementById(`originalText-${k}`);
+            const source = document.getElementById(`exampleSource-${k}`);
+            const title = document.getElementById(`sectionTitle-${k}`);
+            document.getElementById(`patientContainer-${k}`).innerHTML = PATIENT_PLACEHOLDER;
+            document.getElementById(`resultContainer-${k}`).innerHTML = REVIEW_PLACEHOLDER;
+            Object.keys(sentenceMap).filter(key => sectionOf(key) === String(k)).forEach(key => delete sentenceMap[key]);
+            resetChat(k);
+            originalBox.textContent = 'Loading test example...';
+
+            try {
+                // Each paragraph shows a different abstract: try a few times to avoid duplicates.
+                let example;
+                for (let attempt = 0; attempt < 5; attempt++) {
+                    const response = await fetch(`${API_URL}/example`);
+                    example = await response.json();
+                    if (!usedPmids(k).has(String(example.pmid))) break;
+                }
+                originalBox.textContent = example.text;
+                title.textContent = example.title || `Paragraph ${k + 1}`;
+                source.dataset.pmid = example.pmid;
+                source.textContent = `Test data: PLABA test split, PMID ${example.pmid}`;
+            } catch (error) {
+                originalBox.textContent = 'Could not load a test example. Please verify that your FastAPI backend is running on port 8000.';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            document.getElementById('sections').innerHTML = Array.from({ length: SECTION_COUNT }, (_, k) => sectionHtml(k)).join('');
+            for (let k = 0; k < SECTION_COUNT; k++) await loadExample(k);  // one after another so the paragraphs differ
+        });
+
+        async function translateJournal(k) {
+            const originalBox = document.getElementById(`originalText-${k}`);
+            const text = originalBox.innerText.trim();
+            const resultContainer = document.getElementById(`resultContainer-${k}`);
+            const patientContainer = document.getElementById(`patientContainer-${k}`);
+            const loading = document.getElementById(`loading-${k}`);
+
+            if (!text) return;
+
+            resultContainer.innerHTML = '';
+            patientContainer.innerHTML = '';
+            loading.classList.remove('hidden');
+
+            try {
+                const response = await fetch(`${API_URL}/simplify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: text })
+                });
+                
+                const json = await response.json();
+                loading.classList.add('hidden');
+
+                Object.keys(sentenceMap).filter(key => sectionOf(key) === String(k)).forEach(key => delete sentenceMap[key]);
+                json.data.forEach(item => {
+                    sentenceMap[`${k}-${item.id}`] = item;
+                });
+
+                // Wrap original sentences in interactive spans (scrolls to the patient text on click)
+                originalBox.innerHTML = json.data.map(item => `
+                    <span 
+                        id="orig-${k}-${item.id}" 
+                        onmouseenter="highlightPair('${k}-${item.id}', true)" 
+                        onmouseleave="highlightPair('${k}-${item.id}', false)"
+                        onclick="jumpToPair('${k}-${item.id}', 'pat')"
+                        title="Click to scroll to the matching sentence in the patient text"
+                        class="${BASE_SPAN_CLASS}"
+                    >${escapeHtml(item.original)}</span>
+                `).join(' ');
+
+                // The model's own suggestion, color-coded (scrolls to original on click)
+                const simplifiedSpans = json.data.map(item => `
+                    <span 
+                        id="simp-${k}-${item.id}" 
+                        onmouseenter="highlightPair('${k}-${item.id}', true)" 
+                        onmouseleave="highlightPair('${k}-${item.id}', false)"
+                        onclick="jumpToPair('${k}-${item.id}', 'orig')"
+                        title="Click to scroll to original sentence"
+                        class="${BASE_SPAN_CLASS}"
+                    >${escapeHtml(item.model_output || item.simplified)}</span>
+                `).join(' ');
+
+                // Safe version (what the patient sees): only red sentences (the simplification changed facts)
+                // are replaced by the original. Green and yellow sentences are shown simplified.
+                const patientSpans = json.data.map(item => `
+                    <span
+                        id="pat-${k}-${item.id}"
+                        onmouseenter="highlightPair('${k}-${item.id}', true)"
+                        onmouseleave="highlightPair('${k}-${item.id}', false)"
+                        onclick="jumpToPair('${k}-${item.id}', 'orig')"
+                        title="Click to scroll to original sentence"
+                        class="${BASE_SPAN_CLASS}"
+                    >${escapeHtml(item.risk === 'HIGH' ? item.original : item.simplified)}</span>
+                `).join(' ');
+
+                patientContainer.innerHTML = `
+                    <div class="bg-white p-6 border border-gray-200 rounded shadow-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+                            <h4 class="font-bold text-1177-red text-lg">Simplified Version (Plain Language):</h4>
+                            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-green-100 text-green-800">Visible to patient</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 border border-gray-200 rounded text-gray-900 leading-relaxed text-base">
+                            ${patientSpans}
+                        </div>
+                    </div>
+                `;
+
+                resultContainer.innerHTML = `
+                    <div class="bg-white p-6 border-2 border-dashed border-gray-300 rounded shadow-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-1">
+                            <h4 class="font-bold text-gray-700 text-lg">Model suggestion <span class="ml-1 align-middle text-xs font-semibold px-2 py-0.5 rounded-full bg-gray-200 text-gray-700">Not visible to user</span></h4>
+                            <div class="flex items-center gap-4 text-xs text-gray-600">
+                                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>Facts OK, simplified</span>
+                                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-yellow-400 inline-block"></span>Facts OK, less simplified</span>
+                                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>Facts changed (patient sees original)</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gray-50 border border-gray-200 rounded text-gray-900 leading-relaxed text-base mb-4">
+                            ${simplifiedSpans}
+                        </div>
+
+                        <div id="sentenceInspector-${k}" class="p-4 rounded border border-gray-200 bg-gray-50 text-sm text-gray-600 transition-all">
+                            <span class="italic">Hover over any sentence to view risk details, or click to jump to the matching sentence in the other text.</span>
+                        </div>
+                    </div>
+                `;
+
+                resetChat(k);
+                document.getElementById('chatPanel').classList.remove('hidden');
+                document.getElementById('chatBody').classList.remove('hidden');
+                document.getElementById('chatChevron').classList.remove('rotate-180');
+
+            } catch (error) {
+                loading.classList.add('hidden');
+                patientContainer.innerHTML = '<p class="text-red-500 p-4 border border-red-200 bg-red-50 rounded">Could not connect to the server. Please verify that your FastAPI backend is running.</p>';
+            }
+        }
+
+        // ---------- Chat assistant ----------
+        let chatHistory = [];
+        let chatFocusKey = null;
+
+        function toggleChat() {
+            const body = document.getElementById('chatBody');
+            const chevron = document.getElementById('chatChevron');
+            const collapsed = body.classList.toggle('hidden');
+            chevron.classList.toggle('rotate-180', collapsed);
+        }
+
+        function setChatInfo(open) {
+            document.getElementById('chatInfo').classList.toggle('hidden', !open);
+            document.getElementById('chatInfoBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        function toggleChatInfo() {
+            setChatInfo(document.getElementById('chatInfo').classList.contains('hidden'));
+        }
+
+        document.addEventListener('click', event => {
+            const info = document.getElementById('chatInfo');
+            if (info && !info.classList.contains('hidden') &&
+                !info.contains(event.target) && !document.getElementById('chatInfoBtn').contains(event.target)) {
+                setChatInfo(false);
+            }
+        });
+        document.addEventListener('keydown', event => { if (event.key === 'Escape') setChatInfo(false); });
+
+        function setChatFocus(key) {
+            chatFocusKey = key;
+            showChatFocus(sentenceMap[key] ? sentenceMap[key].original : null);
+        }
+
+        // The box shows only the marked sentence's text (a hint while nothing is marked).
+        function showChatFocus(text) {
+            const label = document.getElementById('chatFocus');
+            if (!label) return;
+            if (text) {
+                label.className = 'text-sm text-gray-900 bg-gray-50 border border-gray-200 rounded p-2 mb-3 max-h-24 overflow-y-auto';
+                label.textContent = text;
+            } else {
+                label.className = 'text-xs italic text-gray-500 mb-3';
+                label.textContent = 'Click a sentence in one of the texts.';
+            }
+        }
+
+        // resetChat(k): clear the chat only if the marked sentence belongs to paragraph k.
+        function resetChat(k) {
+            if (chatFocusKey !== null && (k === undefined || sectionOf(chatFocusKey) === String(k))) {
+                chatHistory = [];
+                chatFocusKey = null;
+                const messages = document.getElementById('chatMessages');
+                if (messages) messages.innerHTML = '';
+                showChatFocus(null);
+            }
+            const panel = document.getElementById('chatPanel');
+            if (panel && Object.keys(sentenceMap).length === 0) panel.classList.add('hidden');
+        }
+
+        function addChatBubble(role, text) {
+            const messages = document.getElementById('chatMessages');
+            const bubble = document.createElement('div');
+            const isUser = role === 'user';
+            bubble.className = isUser
+                ? 'ml-auto max-w-[85%] bg-1177-blue text-white rounded-lg px-4 py-2 text-sm whitespace-pre-wrap'
+                : 'mr-auto max-w-[85%] bg-gray-100 text-gray-900 rounded-lg px-4 py-2 text-sm whitespace-pre-wrap';
+            bubble.textContent = text;  // textContent: never interpret model output as HTML
+            messages.appendChild(bubble);
+            messages.scrollTop = messages.scrollHeight;
+            return bubble;
+        }
+
+        function askSuggestion(text) {
+            document.getElementById('chatInput').value = text;
+            sendChat();
+        }
+
+        async function sendChat(event) {
+            if (event) event.preventDefault();
+            const input = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('chatSend');
+            const message = input.value.trim();
+            if (!message || sendBtn.disabled) return;
+
+            if (chatFocusKey === null || !sentenceMap[chatFocusKey]) {
+                addChatBubble('assistant', 'Click a sentence in one of the texts first, and I will explain what it means.');
+                return;
+            }
+
+            input.value = '';
+            addChatBubble('user', message);
+            const pending = addChatBubble('assistant', 'Thinking...');
+            sendBtn.disabled = true;
+
+            // Only the marked sentence's original text is sent: no simplified text, no flags.
+            const focusItem = sentenceMap[chatFocusKey];
+            const sentences = [{ id: focusItem.id, original: focusItem.original, simplified: '', risk: 'LOW', reasons: [] }];
+
+            try {
+                const response = await fetch(`${API_URL}/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: message,
+                        history: chatHistory,
+                        sentences: sentences,
+                        focus_id: focusItem.id
+                    })
+                });
+                const json = await response.json();
+                if (!response.ok) throw new Error(json.detail || 'Something went wrong.');
+
+                pending.textContent = json.reply;
+                chatHistory.push({ role: 'user', content: message });
+                chatHistory.push({ role: 'assistant', content: json.reply });
+            } catch (error) {
+                pending.textContent = error.message === 'Failed to fetch'
+                    ? 'Could not connect to the server. Please verify that your FastAPI backend is running.'
+                    : error.message;
+                pending.className = 'mr-auto max-w-[85%] bg-red-50 text-red-700 border border-red-200 rounded-lg px-4 py-2 text-sm';
+            } finally {
+                sendBtn.disabled = false;
+                input.focus();
+            }
+        }
+    </script>
+</body>
+</html>

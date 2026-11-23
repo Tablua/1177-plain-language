@@ -1,0 +1,12 @@
+# Core pipeline
+torch
+transformers
+sentencepiece
+
+# Backend
+fastapi
+uvicorn
+pydantic
+
+# Chat assistant (optional)
+anthropic
