@@ -191,7 +191,7 @@ split). The texts are public PubMed abstracts — **no patient data**. See
 
 Built by a team of four during the Hacking Healthcare hackathon (finalists, top 5):
 
-- **Hugo** and **Ruben** — the core pipeline: fine-tuned model, training, evaluation and
-  results (Hugo); data pipeline and quality estimation (Ruben)
-- **Tindra** — chat assistant
-- **Morgan** — UI/frontend
+- **Hugo** and **Ruben** — backend: the fine-tuned model, training, evaluation, fact
+  check, data pipeline and results
+- **Morgan** and **Tindra** — frontend & LLM wrapper: the 1177-style UI and the
+  Claude-powered chat assistant
