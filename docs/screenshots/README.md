@@ -1,9 +1,19 @@
 # Screenshots
 
-Drop your UI screenshots in this folder and they will show up in the root README
-(`ui.png` is referenced there; `inspector.png` and `chat.png` are optional extras).
+The four shots used in the root README live in this folder:
 
-## 1. Get the app running locally
+- `start.png` — the start page (the note list) before simplification. This is the
+  headline image at the top of the README.
+- `green.png` — a sentence whose suggestion came out **green**: facts correct and
+  clearly simplified, so the plain-language rewrite is shown.
+- `yellow.png` — a sentence whose suggestion came out **yellow**: facts correct but
+  little change.
+- `red.png` — a sentence whose suggestion came out **red**: facts changed, so the
+  ORIGINAL is kept instead of the rewrite (with the inspector explaining why).
+
+## Re-capturing the shots
+
+### 1. Get the app running locally
 
 ```bash
 cd 1177-plain-language
@@ -26,26 +36,19 @@ uvicorn api:app --port 8000
 Then open `frontend/index.html` directly in a browser (double-click the file) — no
 build step.
 
-## 2. Take the shots
+### 2. Take the shots
 
-1. Expand the first note (**Inpatient Care, Physician**). It auto-loads three public
-   PLABA test abstracts (no patient data).
+1. Capture the **start page** before clicking anything (or reload the page to reset) —
+   that's `start.png`. The first note (**Inpatient Care, Physician**) can be expanded so
+   the auto-loaded PLABA test abstract (no patient data) is visible.
 2. Click **Simplify text** on the first abstract and wait for the three columns to
    render: original clinical note | plain-language version for the patient | the
    model's colour-coded suggestion.
-3. Capture with your OS tool (Windows: `Win+Shift+S`, macOS: `Cmd+Shift+4`), or use a
+3. Capture one shot per outcome colour from the "Model suggestion" column — hover (or
+   click) a sentence of each colour. Clicking a red sentence also pins the inspector
+   below it, which explains *why* the rewrite was rejected.
+4. Capture with your OS tool (Windows: `Win+Shift+S`, macOS: `Cmd+Shift+4`), or use a
    full-page screenshot extension for a taller shot.
 
-Suggested files:
-
-- `ui.png` — the headline shot: the full three-column view. This is the image the
-  root README shows.
-- `inspector.png` — click a red sentence in the "Model suggestion" column so the
-  inspector below it explains *why* the original was kept instead of the rewrite.
-  (Clicking keeps the inspector on screen, which is easier to capture than hover.)
-- `chat.png` — click a sentence, open "Ask the assistant for help" (bottom right),
-  ask "What does it mean?" and show the answer. This one needs the optional
-  Anthropic key in `frontend/.env` (see the root README).
-
-Save them in this folder with these names, commit and push — they appear in the
+Save them in this folder with the names above, commit and push — they appear in the
 README on GitHub automatically.

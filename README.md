@@ -12,7 +12,7 @@ Built in one day during the **Hacking Healthcare hackathon**, where the team rea
 > affiliated with 1177. It runs on public PubMed research abstracts (the PLABA dataset),
 > never on real patient data.
 
-![Three-column view: original note, plain-language version, model suggestion](docs/screenshots/ui.png)
+![The start page: 1177-style note list with a "Simplify text" button](docs/screenshots/start.png)
 
 ## What it does
 
@@ -62,6 +62,12 @@ strict selection hierarchy (facts correct → no info lost → actually simplifi
 - **Chat assistant** (`frontend/chat.py`): Claude (Anthropics API) explains one clicked
   sentence in plain words. Only that one sentence is sent to the API; the system prompt
   forbids sharing it further.
+
+The three outcomes, colour-coded — a wrong simplification is never shown:
+
+| 🟢 Green: facts correct, clearly simplified | 🟡 Yellow: facts correct, little change | 🔴 Red: facts changed — the ORIGINAL is shown |
+|:---:|:---:|:---:|
+| ![Green: the plain-language rewrite is shown](docs/screenshots/green.png) | ![Yellow: the rewrite is shown with little change](docs/screenshots/yellow.png) | ![Red: the original is kept, the inspector explains why](docs/screenshots/red.png) |
 
 ## Results
 
